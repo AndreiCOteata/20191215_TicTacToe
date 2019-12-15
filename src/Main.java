@@ -34,6 +34,7 @@ public class Main {
             }
             currentPlayer = (currentPlayer == PlayerX) ? PlayerO : PlayerX;
         } while (currentState == PLAYING);
+        System.out.println("something");
     }
 
     private static void initiateGame() {
