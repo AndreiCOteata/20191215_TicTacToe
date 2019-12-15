@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Main {
     private static final int EmptyBoard = 0;
     private static final int PlayerX = 1;
@@ -21,9 +20,9 @@ public class Main {
         initiateGame();
         System.out.println();
         do {
-            MutarePlayer(currentPlayer);
+            mutarePlayer(currentPlayer);
             updateGame(currentPlayer, RandCurent, ColoanaCurenta);
-            Tabla();
+            tabla();
             if (currentState == PlayerX_WON) {
                 System.out.println("Player X won. Good Game! See ya!");
             } else if (currentState == PLayerO_WON) {
@@ -43,11 +42,11 @@ public class Main {
                 board[row][col] = EmptyBoard;
             }
             currentState = PLAYING;
-            currentPlayer = FirstPlayer();
+            currentPlayer = firstPlayer();
         }
     }
 
-    private static void MutarePlayer(int player) {
+    private static void mutarePlayer(int player) {
         boolean input = false;
         do {
             if (player == PlayerX) {
@@ -68,7 +67,7 @@ public class Main {
         } while (!input);
     }
 
-    private static boolean Remiza() {
+    private static boolean remiza() {
         for (int row = 0; row < Randuri; row++) {
             for (int col = 0; col < Coloane; col++) {
                 if (board[row][col] == EmptyBoard) {
@@ -99,15 +98,15 @@ public class Main {
     private static void updateGame(int theSeed, int currentRow, int currentCol) {
         if (hasWon(theSeed, currentRow, currentCol)) {
             currentState = (theSeed == PlayerX) ? PlayerX_WON : PLayerO_WON;
-        } else if (Remiza()) {
+        } else if (remiza()) {
             currentState = DRAW;
         }
     }
 
-    private static void Tabla() {
+    private static void tabla() {
         for (int row = 0; row < Randuri; row++) {
             for (int col = 0; col < Coloane; col++) {
-                Cells(board[row][col]);
+                cells(board[row][col]);
                 if (col != Coloane - 1) {
                     System.out.print("||");
                 }
@@ -120,7 +119,7 @@ public class Main {
         System.out.println();
     }
 
-    private static void Cells(int content) {
+    private static void cells(int content) {
         switch (content) {
             case EmptyBoard:
                 System.out.print("   ");
@@ -134,7 +133,7 @@ public class Main {
         }
     }
 
-    private static int FirstPlayer() {
+    private static int firstPlayer() {
         int rand = (int) (Math.random() * 2 + 1);
         if (rand == 2) {
             return PlayerX;
